@@ -15,7 +15,4 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView rv = findViewById(R.id.recycler_view);
     }
 
-    private void downloadFile(String uri){
-        
-    }
 }

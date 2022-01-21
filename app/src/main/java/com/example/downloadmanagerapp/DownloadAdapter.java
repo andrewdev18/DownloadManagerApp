@@ -1,14 +1,11 @@
 package com.example.downloadmanagerapp;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,15 +15,20 @@ import java.util.List;
 
 public class DownloadAdapter extends RecyclerView.Adapter {
 
-    Context context;
-    List<DownloadFile> fileList = new ArrayList<>();
+    private Context context;
+    private List<DownloadFile> fileList = new ArrayList<>();
 
-    public DownloadAdapter(Context context, List<DownloadFile> fileList) {
-        this.context = context;
-        this.fileList = fileList;
+    final DownloadAdapter.OnItemClickListener listener;
+    public interface OnItemClickListener{
+        void onItemClick(DownloadFile downloadFile);
     }
 
-
+    public DownloadAdapter(Context context, List<DownloadFile> fileList, OnItemClickListener listener) {
+        this.context = context;
+        this.fileList = fileList;
+        this.listener = listener;
+    }
+    
     public class DownloadHolder extends RecyclerView.ViewHolder{
 
         TextView lblTitle;
@@ -68,15 +70,7 @@ public class DownloadAdapter extends RecyclerView.Adapter {
     }
 
     private void startDownloadFile(DownloadFile file){
-        int updatedRow = 0;
-        ContentValues contentValues = new ContentValues();
 
-        try{
-            Toast.makeText(context, "Click",Toast.LENGTH_LONG).show();
-            updatedRow = context.getContentResolver().update(Uri.parse(file.getUri()), null, "title=?", new String[]{file.getFileName()});
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
     @Override
