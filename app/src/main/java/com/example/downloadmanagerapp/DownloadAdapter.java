@@ -28,7 +28,7 @@ public class DownloadAdapter extends RecyclerView.Adapter {
         this.fileList = fileList;
         this.listener = listener;
     }
-    
+
     public class DownloadHolder extends RecyclerView.ViewHolder{
 
         TextView lblTitle;
